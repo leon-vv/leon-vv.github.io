@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voltrace — Next-Gen Electron Optics Simulations</title>
+  <meta name="description" content="Voltrace delivers next-generation electron optics simulations with unparalleled accuracy, speed, and scalability through the Boundary Element Method (BEM).">
+  <link rel="icon" href="images/voltrace_favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Voltrace home">
+        <img src="images/voltrace_logo_without_text-1.png" alt="Voltrace">
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="technology.html">Technology</a></li>
+          <li class="has-dropdown">
+            <a href="applications.html">Applications</a>
+            <div class="dropdown">
+              <a href="electron-microscopy.html">Electron Microscopy</a>
+              <a href="mass-spectrometry.html">Mass Spectrometry</a>
+              <a href="particle-accelerators.html">Particle Accelerators</a>
+            </div>
+          </li>
+          <li><a href="docs/">Documentation</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow eyebrow-brand reveal">Voltrace</p>
+        <h1 class="reveal">Next-Gen Electron Optics Simulations</h1>
+        <p class="lead reveal">Achieve unparalleled accuracy, speed, and scalability through the Boundary Element Method</p>
+        <figure class="hero-figure reveal">
+          <img src="images/stigmator_small.png" alt="Electron optics field simulation of a stigmator" width="560">
+        </figure>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section features">
+      <div class="container">
+        <div class="feature-grid">
+          <article class="feature reveal">
+            <div class="feature-icon"><img src="images/objective-lens.svg" alt=""></div>
+            <h3>BEM-Driven Precision</h3>
+            <p>Voltrace outperforms standard Finite Element Methods by leveraging the Boundary Element Method—using only the boundary mesh for faster, more accurate simulations and a reduced problem size.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon"><img src="images/quadtree.svg" alt=""></div>
+            <h3>Unmatched Scalability</h3>
+            <p>Powered by a modern implementation of the Fast Multipole Method, Voltrace handles millions of triangles with ease—enabling high-performance simulations for the most complex geometries.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon"><img src="images/beam_through_lens.svg" alt=""></div>
+            <h3>Accurate, Fast Particle Tracing</h3>
+            <p>Sophisticated algorithms deliver rapid, high-accuracy field approximations around the optical axis—ensuring reliable results for even the most demanding simulations.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon"><img class="ic-square" src="images/python-logo.svg" alt=""></div>
+            <h3>Adaptable Python Interface</h3>
+            <p>The intuitive Python interface offers complete flexibility—seamlessly integrating into your workflow and allowing you to customize every aspect of your simulation.</p>
+          </article>
+        </div>
+        <div class="features-cta reveal">
+          <a class="btn" href="technology.html">Read More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="section workflow">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" style="justify-content:center">A complete workflow</p>
+          <h2>From Design To Analysis</h2>
+          <p>Discover how you can take your electron optics simulations to the next level with our streamlined and versatile pipeline.</p>
+        </div>
+
+        <div class="workflow-grid">
+          <div class="workflow-col workflow-col--left">
+            <div class="step reveal">
+              <span class="step-num">1</span>
+              <div>
+                <h3>Geometry Builder</h3>
+                <p>Create radially symmetric and 3D geometries with ease through our lightweight geometry module designed for ease-of-use and flexibility.</p>
+              </div>
+            </div>
+            <div class="step reveal">
+              <span class="step-num">2</span>
+              <div>
+                <h3>Mesh Generation</h3>
+                <p>Transform geometries in structural meshes that preserve symmetries. For complex geometries, import your mesh using industry standard formats.</p>
+              </div>
+            </div>
+            <div class="step reveal">
+              <span class="step-num">3</span>
+              <div>
+                <h3>Excitation Setup</h3>
+                <p>Easily assign voltages, currents, and material properties to mesh elements to configure the simulation for electrostatic and magnetostatic setups.</p>
+              </div>
+            </div>
+          </div>
+
+          <figure class="workflow-figure reveal">
+            <img src="images/microscope%20column.png" alt="Diagram of an electron microscope column">
+          </figure>
+
+          <div class="workflow-col workflow-col--right">
+            <div class="step reveal">
+              <span class="step-num">4</span>
+              <div>
+                <h3>Field Computation</h3>
+                <p>Solve electromagnetic fields efficiently with the Fast Multipole Method, enabling scalable simulations of detailed meshes.</p>
+              </div>
+            </div>
+            <div class="step reveal">
+              <span class="step-num">5</span>
+              <div>
+                <h3>Particle Tracing</h3>
+                <p>Trace charged particles with high-precision time-stepping, with relativistic effects, space charge interactions and accurate axial field interpolations.</p>
+              </div>
+            </div>
+            <div class="step reveal">
+              <span class="step-num">6</span>
+              <div>
+                <h3>Beam Analysis</h3>
+                <p>Analyze beam focal points and aberrations to assess optical performance. Use detailed insights to refine your designs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benchmarks -->
+    <section class="section benchmarks">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" style="justify-content:center">Benchmarks</p>
+          <h2>Performance That Speaks for Itself</h2>
+          <p>See how Voltrace stacks up with real-world benchmarks. Voltrace delivers speed, efficiency, and accuracy—backed by data.</p>
+        </div>
+
+        <div class="bench-grid">
+          <div class="bench reveal">
+            <div class="bench-num">10<sup>-6</sup></div>
+            <h3>Achievable Accuracy</h3>
+            <p>Voltrace achieves outstanding accuracy, with relative errors as low as 1e-6 on real world benchmarks taken from the literature. This significantly outperforms Finite Element Method (FEM) software.</p>
+          </div>
+          <div class="bench reveal">
+            <div class="bench-num">10<sup>6</sup></div>
+            <h3>Mesh Triangles</h3>
+            <p>Voltrace efficiently handles simulations with over a million boundary elements. Using a modern Fast Multipole Method, it reduces the complexity of field solving from cubic to nearly linear—enabling fast, large-scale simulations.</p>
+          </div>
+          <div class="bench reveal">
+            <div class="bench-num">10ms</div>
+            <h3>Tracing Time</h3>
+            <p>Voltrace accelerates field evaluation using accurate axial interpolations, enabling it to achieve particle trace times below 10ms through realistic optical systems.</p>
+          </div>
+          <div class="bench reveal">
+            <div class="bench-num">10s</div>
+            <h3>Design Iteration</h3>
+            <p>From mesh generation to full solution and tracing, Voltrace completes the entire simulation loop in under 10s for meshes with a reduced number of elements—streamlining rapid design iterations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <img src="images/voltrace_logo_without_text-1.png" alt="Voltrace">
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="technology.html">Technology</a>
+        <a href="applications.html">Applications</a>
+        <a href="docs/">Documentation</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-copy">© 2025 Voltrace. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/main.js" defer></script>
+</body>
+</html>

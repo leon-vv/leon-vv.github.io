@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   viewBox="0 0 40 40"
+   id="svg21"
+   sodipodi:docname="python-logo.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview23"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="4.6536465"
+     inkscape:cx="-9.4549511"
+     inkscape:cy="49.638493"
+     inkscape:window-width="2560"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg21" />
+  <defs
+     id="defs15">
+    <mask
+       id="cutout">
+      <rect
+         x="0"
+         y="0"
+         width="40"
+         height="40"
+         fill="white"
+         id="rect2" />
+      <!-- Cutout shapes (black areas become transparent) -->
+      <circle
+         cx="14.5"
+         cy="5"
+         r="1.85"
+         fill="black"
+         id="circle4" />
+      <circle
+         cx="25.5"
+         cy="35"
+         r="1.85"
+         fill="black"
+         id="circle6" />
+      <line
+         x1="10"
+         y1="9.5"
+         x2="20"
+         y2="9.5"
+         stroke="black"
+         stroke-width="1"
+         id="line8" />
+      <line
+         x1="20"
+         y1="30.5"
+         x2="30"
+         y2="30.5"
+         stroke="black"
+         stroke-width="1"
+         id="line10" />
+      <path
+         d="m 9.5,30 c 0,-10 2.5,-10 10,-10 8.5,0 11,0 11,-10"
+         stroke="black"
+         fill="none"
+         stroke-width="1"
+         id="path12" />
+    </mask>
+  </defs>
+  <rect
+     x="10"
+     y="0"
+     width="20"
+     height="40"
+     rx="10"
+     ry="5"
+     fill="white"
+     mask="url(#cutout)"
+     id="rect17" />
+  <rect
+     x="0"
+     y="10"
+     width="40"
+     height="20"
+     rx="5"
+     ry="10"
+     fill="white"
+     mask="url(#cutout)"
+     id="rect19" />
+</svg>

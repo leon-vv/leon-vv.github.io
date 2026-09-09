@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Technology — Voltrace</title>
+  <meta name="description" content="Discover the advanced technology behind Voltrace: the Boundary Element Method, Fast Multipole Method, accurate particle tracing, a parametric mesher, magnetostatics, and a native Python interface.">
+  <link rel="icon" href="images/voltrace_favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Voltrace home">
+        <img src="images/voltrace_logo_without_text-1.png" alt="Voltrace">
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="technology.html" aria-current="page">Technology</a></li>
+          <li class="has-dropdown">
+            <a href="applications.html">Applications</a>
+            <div class="dropdown">
+              <a href="electron-microscopy.html">Electron Microscopy</a>
+              <a href="mass-spectrometry.html">Mass Spectrometry</a>
+              <a href="particle-accelerators.html">Particle Accelerators</a>
+            </div>
+          </li>
+          <li><a href="docs/">Documentation</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow reveal">Shaping the future</p>
+        <h1 class="reveal">Bringing Electron Optics into the 21st Century</h1>
+        <p class="reveal">Discover the advanced technology behind Voltrace and our vision for the next generation of electron optics simulation software.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:40px">
+      <div class="container">
+
+        <article class="tech-row reveal">
+          <div class="tech-row__body">
+            <h2>Boundary Element Method</h2>
+            <p>Voltrace uses the Boundary Element Method (BEM) to solve electrostatic and magnetostatic field problems with high accuracy. Unlike Finite Element Methods (FEM), which require meshing the entire simulation volume, BEM reduces the problem to surface integrals, relying only on boundary meshes. This leads to a significant reduction in computational complexity and offers greater precision near material interfaces and along the optical axis.</p>
+            <p>Because electron optics problems are fundamentally boundary-driven, BEM provides a more natural and efficient formulation. Voltrace’s implementation enables accurate modeling of complex geometries without the overhead of volumetric discretization: a foundational step toward more scalable and physics-aligned simulation tools.</p>
+          </div>
+          <div class="tech-row__media"><img src="images/objective-lens.svg" alt="Meshed objective lens"></div>
+        </article>
+
+        <article class="tech-row reveal">
+          <div class="tech-row__body">
+            <h2>Fast Multipole Method</h2>
+            <p>While BEM offers high accuracy, it typically results in dense system matrices with quadratic complexity. Voltrace overcomes this by integrating the Fast Multipole Method (FMM), which approximates long-range interactions using hierarchical multipole expansions, reducing computational cost to near-linear.</p>
+            <p>This allows Voltrace to handle large-scale problems with millions of boundary elements efficiently, without compromising precision. FMM is tightly integrated into our solver stack, enabling fast, scalable simulations essential for complex electron optics systems.</p>
+          </div>
+          <div class="tech-row__media"><img src="images/quadtree.svg" alt="Hierarchical spatial subdivision used by the Fast Multipole Method"></div>
+        </article>
+
+        <article class="tech-row reveal">
+          <div class="tech-row__body">
+            <h2>Accurate and Fast Tracing</h2>
+            <p>Precise field evaluation is critical for reliable particle tracing, especially near the optical axis where small errors can lead to significant deviations. Voltrace uses semi-analytical radial expansions based on the on-axis potential and its high-order axial derivatives to reconstruct the field with smooth, high accuracy in this region.</p>
+            <p>In FEM-based tools, tracing often suffers from noisy or discontinuous field data due to volumetric meshing and interpolation artifacts. Voltrace’s boundary-based formulation avoids these issues entirely, delivering fast, stable, and high-fidelity ray and particle tracing — even in the most sensitive parts of the beam path.</p>
+          </div>
+          <div class="tech-row__media"><img src="images/formulas.svg" alt="Semi-analytical radial field expansion formulas"></div>
+        </article>
+
+        <article class="tech-row reveal">
+          <div class="tech-row__body">
+            <h2>Parametric Mesher</h2>
+            <p>Voltrace features a purpose-built parametric meshing engine designed to generate high-quality, structured surface meshes directly from geometric definitions. By preserving symmetry and aligning mesh elements with the physical structure, it ensures that simulations start from clean, consistent input, something that’s often a weak point in general-purpose or CAD-based meshers.</p>
+            <p>This tailored approach reduces discretization error, improves the conditioning of BEM system matrices, and leads to more stable, accurate field evaluations. For field tracing, it guarantees smooth potential and field profiles near sensitive regions like the optical axis. The parametric mesher is a key enabler of Voltrace’s overall accuracy, efficiency, and reliability.</p>
+          </div>
+          <div class="tech-row__media"><img src="images/beam_through_lens.svg" alt="Beam traced through a lens"></div>
+        </article>
+
+        <article class="tech-row reveal">
+          <div class="tech-row__body">
+            <h2>Magnetostatics</h2>
+            <p>Voltrace includes full magnetostatic support as a first-class feature, enabling accurate simulation of magnetic lenses, coils, and hybrid electrostatic–magnetic systems. Unlike many electron optics tools that treat magnetostatics as an afterthought or omit it entirely, Voltrace offers a unified approach where magnetic fields are natively integrated into both field solving and particle tracing.</p>
+            <p>This capability is essential for modern electron optics design, where magnetic elements play a central role in beam shaping, focusing, and correction. Voltrace handles these interactions seamlessly, without relying on external tools or ad hoc approximations.</p>
+          </div>
+          <div class="tech-row__media"><img src="images/maxwell_magnetostatics.svg" alt="Magnetostatics field equations"></div>
+        </article>
+
+        <article class="tech-row reveal">
+          <div class="tech-row__body">
+            <h2>Python Interface</h2>
+            <p>Voltrace is delivered as a native Python package, giving users direct access to its full simulation pipeline from a familiar, scriptable environment. This enables seamless integration with scientific workflows, custom optimization routines, and data analysis; all without leaving Python.</p>
+            <p>Unlike GUI-centric tools with limited automation capabilities, Voltrace exposes its core functionality through a clean, modular API, empowering researchers and developers to build flexible, reproducible simulations tailored to their specific needs.</p>
+          </div>
+          <div class="tech-row__media"><img src="images/python-logo.svg" alt="Python logo"></div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <img src="images/voltrace_logo_without_text-1.png" alt="Voltrace">
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="technology.html">Technology</a>
+        <a href="applications.html">Applications</a>
+        <a href="docs/">Documentation</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-copy">© 2025 Voltrace. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
