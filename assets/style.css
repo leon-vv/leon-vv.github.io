@@ -14,11 +14,19 @@
   --field-bg:  #20252a;
   --maxw:      1400px;
   --radius:    14px;
+  --header-h:  88px;
 }
 
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+
+/* Keep anchor targets clear of the sticky header when jumped to. */
+[id] { scroll-margin-top: calc(var(--header-h) + 12px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 
 body {
   margin: 0;
@@ -94,9 +102,9 @@ h1, h2, h3 { color: var(--text); font-weight: 500; line-height: 1.15; margin: 0;
 .header-inner {
   position: relative;
   display: flex; align-items: center; justify-content: space-between;
-  height: 88px;
+  height: var(--header-h);
 }
-.logo img { height: 46px; width: auto; }
+.logo img { height: 46px; width: auto; transition: height .2s ease; }
 
 /* Nav sits centred in the header, independent of the logo width */
 .main-nav {
@@ -146,13 +154,21 @@ h1, h2, h3 { color: var(--text); font-weight: 500; line-height: 1.15; margin: 0;
 
 .nav-toggle {
   display: none;
-  background: none; border: 0; cursor: pointer; padding: 8px;
+  background: none; border: 0; cursor: pointer;
+  /* 44px square: the minimum comfortable touch target */
+  width: 44px; height: 44px; padding: 10px;
+  margin-right: -10px; /* keep the icon optically flush with the container edge */
   color: var(--text);
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-toggle span {
   display: block; width: 24px; height: 2px; background: currentColor;
   margin: 5px 0; transition: transform .25s ease, opacity .25s ease;
 }
+/* Morph the three bars into an X while the menu is open */
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ===========================================================
    Sections
@@ -351,21 +367,46 @@ section { position: relative; }
 /* ===========================================================
    Responsive
    =========================================================== */
+
+/* The nav is centred in the header independently of the logo, so as the
+   viewport narrows the two close in on each other and collide well before
+   the 900px hamburger breakpoint. These two steps tighten the nav (and
+   finally the logo) so they stay clear of one another down to 901px. */
+@media (max-width: 1120px) and (min-width: 901px) {
+  .main-nav ul { gap: 30px; }
+  .main-nav a { font-size: 0.96rem; gap: 7px; }
+}
+
+@media (max-width: 1000px) and (min-width: 901px) {
+  .main-nav ul { gap: 20px; }
+  .main-nav a { font-size: 0.9rem; gap: 6px; }
+  .logo img { height: 38px; }
+}
+
 @media (max-width: 900px) {
   .nav-toggle { display: block; }
   .main-nav {
-    position: absolute; top: 88px; left: 0; right: 0;
+    /* `top: 100%` tracks the header height instead of hardcoding it, so the
+       panel stays attached when --header-h shrinks on smaller screens. */
+    position: absolute; top: 100%; left: 0; right: 0;
     transform: none;
     background: var(--bg); border-bottom: 1px solid var(--border);
     max-height: 0; overflow: hidden; transition: max-height .3s ease;
   }
-  .main-nav.open { max-height: 340px; }
+  /* The menu is ~430px tall; a viewport-relative cap fits it on any phone and
+     scrolls rather than clipping links when the viewport is short (landscape). */
+  .main-nav.open { max-height: min(76vh, 520px); overflow-y: auto; }
   .main-nav ul { flex-direction: column; align-items: flex-start; gap: 0; padding: 8px 24px 18px; }
   .main-nav li { width: 100%; }
   .main-nav a { padding: 12px 0; width: 100%; }
 
-  /* Dropdown collapses to indented inline links on mobile */
-  .dropdown {
+  /* Dropdown collapses to indented inline links on mobile.
+     The hover/focus rules above are more specific than a bare `.dropdown`,
+     so they must be neutralised explicitly — otherwise hovering re-applies
+     the desktop `translateX(-50%)` and the submenu slides off to the side. */
+  .dropdown,
+  .has-dropdown:hover > .dropdown,
+  .has-dropdown:focus-within > .dropdown {
     position: static; transform: none; opacity: 1; visibility: visible;
     min-width: 0; margin: 0 0 6px; padding: 0 0 0 18px;
     background: transparent; border: 0; box-shadow: none;
@@ -389,11 +430,38 @@ section { position: relative; }
 
   .contact-grid { grid-template-columns: 1fr; gap: 44px; }
   .features-cta { justify-content: center; }
+
+  /* Tall diagrams eat the whole screen on a phone — cap them by viewport. */
+  .workflow-figure img { max-height: min(460px, 45vh); }
+  .tech-row__media img { max-height: min(240px, 32vh); }
+
+  .page-hero { padding: 72px 0 32px; }
+  .hero { padding: 56px 0 32px; }
+  .hero-figure { margin-top: 44px; }
 }
 
 @media (max-width: 560px) {
+  :root { --header-h: 66px; }
+  .logo img { height: 34px; }
+
+  .container { padding: 0 18px; }
+  .main-nav ul { padding: 8px 18px 18px; }
+
   .section { padding: 68px 0; }
-  .feature-grid { grid-template-columns: 1fr; }
-  .bench-grid { grid-template-columns: 1fr; }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .feature-grid { grid-template-columns: 1fr; gap: 40px; }
+  .bench-grid { grid-template-columns: 1fr; gap: 40px; }
+
+  .page-hero { padding: 52px 0 28px; }
+  .hero { padding: 44px 0 28px; }
+  .hero-figure { margin-top: 36px; }
+
+  .feature-icon { height: 108px; margin-bottom: 22px; }
+  .feature-icon img { max-height: 100px; }
+
+  .app-card { padding: 26px 22px; }
+  .workflow-col { gap: 34px; }
+  .workflow-grid { gap: 32px; }
+
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .footer-nav { flex-wrap: wrap; gap: 14px 22px; }
 }
