@@ -1,0 +1,2283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta name="generator" content="pdoc3 0.11.6">
+
+
+
+    <title>voltrace.geometry API documentation</title>
+    <meta name="description" content="The geometry module allows the creation of general meshes in 2D and 3D.
+The builtin mesher uses so called _parametric_ meshes, meaning
+that for any …">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+
+  
+  <style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#content .doc-image{padding:0px;display:block;margin:0px auto}#sidebar{padding:1.5em;padding-left:2.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}#sidebar .title{font-weight:bold}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index .selected{background:transparent;font-weight:bold}#index a{color:#058}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+  <style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:29%;min-width:525px;height:100vh;overflow:auto;position:sticky;top:0}#content{width:80%;max-width:110ch;padding:3em 6em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+  <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+
+
+
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });</script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+    <script>window.addEventListener('DOMContentLoaded', () => {
+        hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+        hljs.highlightAll();
+        /* Collapse source docstrings */
+        setTimeout(() => {
+            [...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+                .filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+                .forEach(el => {
+                    let d = document.createElement('details');
+                    d.classList.add('hljs-string');
+                    d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+                    el.replaceWith(d);
+                });
+        }, 100);
+    })</script>
+
+  
+</head>
+<body>
+<main>
+    <article id="content">
+      
+  
+
+  
+
+  <header>
+  <h1 class="title">Module <code>voltrace.geometry</code></h1>
+  </header>
+
+  <section id="section-intro">
+  <p>The geometry module allows the creation of general meshes in 2D and 3D.
+The builtin mesher uses so called <em>parametric</em> meshes, meaning
+that for any mesh we construct a mathematical formula mapping to points on the mesh. This makes it 
+easy to generate structured (or transfinite) meshes. These meshes usually help the mesh to converge
+to the right answer faster, since the symmetries of the mesh (radial, multipole, etc.) are better
+represented. </p>
+<p>The parametric mesher also has downsides, since it's for example harder to generate meshes with
+lots of holes in them (the 'cut' operation is not supported). For these cases, Voltrace makes it easy to import
+meshes generated by other programs (e.g. GMSH or Comsol). Voltrace can import <a href="https://github.com/nschloe/meshio">meshio</a> meshes
+or any file format supported by meshio.</p>
+  </section>
+
+  <section>
+  </section>
+	
+  <section>
+  </section>
+
+  <section>
+  </section>
+
+  <section>
+    <h2 class="section-title" id="header-classes">Classes</h2>
+    <dl>
+      
+      <dt id="voltrace.geometry.Path"><code class="flex name class">
+          <span>class <span class="ident">Path</span></span>
+              <span>(</span><span>fun, parameter_max, breakpoints=None, name=None, velocity=None)</span>
+      </code></dt>
+
+      <dd>
+  
+  
+
+  <div class="desc"><p>A path is a mapping from a parameter (number) in the range [0, paramter_range] to a three dimensional point. Note that <code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code> is a
+subclass of <code><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></code>, and therefore can be easily moved and rotated.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>fun</code></strong> :&ensp;<code>Callable[[float], Point3D]</code></dt>
+<dd>Function from a number to a 3D point (Numpy array)</dd>
+<dt><strong><code>parameter_max</code></strong> :&ensp;<code>float</code></dt>
+<dd>The input range of <code>fun</code> is [0, parameter_max]</dd>
+<dt><strong><code>breakpoints</code></strong> :&ensp;<code>list[float]</code></dt>
+<dd>Parameter values at which the path has a corner, and need to be included explicitely in the mesh (optional)</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of the path (optional)</dd>
+<dt><strong><code>velocity</code></strong> :&ensp;<code>Callable[[float], Point3D]</code></dt>
+<dd>Function from the parameter to the velocity vector, equal to the derivative of fun (optional)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+
+
+          <h3>Ancestors</h3>
+          <ul class="hlist">
+              <li><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></li>
+              <li>abc.ABC</li>
+          </ul>
+
+          <h3>Static methods</h3>
+          <dl>
+              
+    <dt id="voltrace.geometry.Path.aperture"><code class="name flex">
+        
+        <span>def <span class="ident">aperture</span></span>(<span>height, radius, extent, z=0.0)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create an 'aperture'. Note that in a radially symmetric geometry
+an aperture is basically a rectangle with the right side 'open'. Revolving
+this path around the z-axis would generate a cylindircal hole in the center. 
+This is the most basic model of an aperture.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>height</code></strong> :&ensp;<code>float</code></dt>
+<dd>The height of the aperture</dd>
+<dt><strong><code>radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>The radius of the aperture hole (distance to the z-axis)</dd>
+<dt><strong><code>extent</code></strong> :&ensp;<code>float</code></dt>
+<dd>The maximum x value</dd>
+<dt><strong><code>z</code></strong> :&ensp;<code>float</code></dt>
+<dd>The z-coordinate of the center of the aperture</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.arc"><code class="name flex">
+        
+        <span>def <span class="ident">arc</span></span>(<span>center, start, end, reverse=False)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Return an arc by specifying the center, start and end point.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>center</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The center point of the arc.</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The start point of the arc.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The endpoint of the arc.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.circle_xy"><code class="name flex">
+        
+        <span>def <span class="ident">circle_xy</span></span>(<span>x0, y0, radius, angle=6.283185307179586)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Returns (part of) a circle in the XY plane around the z-axis. Starting on the positive X-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x0</code></strong> :&ensp;<code>float</code></dt>
+<dd>x-coordinate of the center of the circle</dd>
+<dt><strong><code>y0</code></strong> :&ensp;<code>float</code></dt>
+<dd>y-coordinate of the center of the circle</dd>
+<dt><strong><code>radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>radius of the circle</dd>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The circumference of the circle in radians. The default of 2*pi gives a full circle.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.circle_xz"><code class="name flex">
+        
+        <span>def <span class="ident">circle_xz</span></span>(<span>x0, z0, radius, angle=6.283185307179586)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Returns (part of) a circle in the XZ plane around the x-axis. Starting on the positive x-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x0</code></strong> :&ensp;<code>float</code></dt>
+<dd>x-coordinate of the center of the circle</dd>
+<dt><strong><code>z0</code></strong> :&ensp;<code>float</code></dt>
+<dd>z-coordinate of the center of the circle</dd>
+<dt><strong><code>radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>radius of the circle</dd>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The circumference of the circle in radians. The default of 2*pi gives a full circle.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.circle_yz"><code class="name flex">
+        
+        <span>def <span class="ident">circle_yz</span></span>(<span>y0, z0, radius, angle=6.283185307179586)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Returns (part of) a circle in the YZ plane around the x-axis. Starting on the positive y-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>y0</code></strong> :&ensp;<code>float</code></dt>
+<dd>x-coordinate of the center of the circle</dd>
+<dt><strong><code>z0</code></strong> :&ensp;<code>float</code></dt>
+<dd>z-coordinate of the center of the circle</dd>
+<dt><strong><code>radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>radius of the circle</dd>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The circumference of the circle in radians. The default of 2*pi gives a full circle.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.ellipse"><code class="name flex">
+        
+        <span>def <span class="ident">ellipse</span></span>(<span>major, minor)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a path along the outline of an ellipse. The ellipse lies
+in the XY plane, and the path starts on the positive x-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>major</code></strong> :&ensp;<code>float</code></dt>
+<dd>The major axis of the ellipse (lies along the x-axis).</dd>
+<dt><strong><code>minor</code></strong> :&ensp;<code>float</code></dt>
+<dd>The minor axis of the ellipse (lies along the y-axis).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.interpolate"><code class="name flex">
+        
+        <span>def <span class="ident">interpolate</span></span>(<span>parameters, points, derivatives=None)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a Path using <code>CubicSpline</code> or <code>CubicHermiteSpline</code> interpolation (depending on whether the derivatives
+are provided).</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>parameters</code></strong> :&ensp;<code>ndarrray</code> of <code>float</code></dt>
+<dd>The parameter values (x-values) that correspond to the given points and derivatives. The first value
+should be zero.</dd>
+<dt><strong><code>points</code></strong> :&ensp;<code>ndarray shape (N, 3)</code></dt>
+<dd>The points in 3D space corresponding with the parameter values.</dd>
+<dt><strong><code>derivatives</code></strong> :&ensp;<code>ndarray shape (N, 3)</code></dt>
+<dd>The derivative values at the given points (optional).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.line"><code class="name flex">
+        
+        <span>def <span class="ident">line</span></span>(<span>from_, to)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a straight line between two points.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>from_</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The starting point of the path.</dd>
+<dt><strong><code>to</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The endpoint of the path.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.polar_arc"><code class="name flex">
+        
+        <span>def <span class="ident">polar_arc</span></span>(<span>radius, angle, start, direction, plane_normal=(0, 1, 0))</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Return an arc specified by polar coordinates. The arc lies in a plane defined by the 
+provided normal vector and curves from the start point in the specified direction 
+counterclockwise around the normal.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>The radius of the arc.</dd>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The angle subtended by the arc (in radians)</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The start point of the arc</dd>
+<dt><strong><code>plane_normal</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The normal vector of the plane containing the arc</dd>
+<dt><strong><code>direction</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>A tangent of the arc at the starting point. 
+Must lie in the specified plane. Does not need to be normalized.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.polygon"><code class="name flex">
+        
+        <span>def <span class="ident">polygon</span></span>(<span>points)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Return the outline of the polygon formed by connecting the given points.
+The polygon returned will be closed.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>points</code></strong> :&ensp;<code>PointsLike3D</code></dt>
+<dd>The points giving the outline of the polygon.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.rectangle_xy"><code class="name flex">
+        
+        <span>def <span class="ident">rectangle_xy</span></span>(<span>xmin, xmax, ymin, ymax)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a rectangle in the XY plane. The path starts at (xmin, ymin, 0), and is 
+counter clockwise around the z-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>xmin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum x-coordinate of the corner points.</dd>
+<dt><strong><code>xmax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum x-coordinate of the corner points.</dd>
+<dt><strong><code>ymin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum y-coordinate of the corner points.</dd>
+<dt><strong><code>ymax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum y-coordinate of the corner points.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.rectangle_xz"><code class="name flex">
+        
+        <span>def <span class="ident">rectangle_xz</span></span>(<span>xmin, xmax, zmin, zmax)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a rectangle in the XZ plane. The path starts at (xmin, 0, zmin), and is 
+counter clockwise around the y-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>xmin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum x-coordinate of the corner points.</dd>
+<dt><strong><code>xmax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum x-coordinate of the corner points.</dd>
+<dt><strong><code>zmin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum z-coordinate of the corner points.</dd>
+<dt><strong><code>zmax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum z-coordinate of the corner points.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.rectangle_yz"><code class="name flex">
+        
+        <span>def <span class="ident">rectangle_yz</span></span>(<span>ymin, ymax, zmin, zmax)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a rectangle in the YZ plane. The path starts at (0, ymin, zmin), and is 
+counter clockwise around the x-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ymin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum y-coordinate of the corner points.</dd>
+<dt><strong><code>ymax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum y-coordinate of the corner points.</dd>
+<dt><strong><code>zmin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum z-coordinate of the corner points.</dd>
+<dt><strong><code>zmax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum z-coordinate of the corner points.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.spline_through_points"><code class="name flex">
+        
+        <span>def <span class="ident">spline_through_points</span></span>(<span>points)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Construct a path by fitting a cubic spline through the given points.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>points</code></strong> :&ensp;<code>(N, 3) ndarray</code> of <code>float</code></dt>
+<dd>Three dimensional points through which the spline is fitted.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+          </dl>
+          <h3>Methods</h3>
+          <dl>
+              
+    <dt id="voltrace.geometry.Path.__add__"><code class="name flex">
+        
+        <span>def <span class="ident">__add__</span></span>(<span>self, other)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Add two paths to create a PathCollection. Note that a PathCollection supports
+a subset of the methods of Path (for example, movement, rotation and meshing). Use
+the + operator to combine paths into a path collection: path1 + path2 + path3.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.PathCollection" href="#voltrace.geometry.PathCollection">PathCollection</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.__call__"><code class="name flex">
+        
+        <span>def <span class="ident">__call__</span></span>(<span>self, t)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Evaluate a point along the path.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>t</code></strong> :&ensp;<code>float</code></dt>
+<dd>The length along the path.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(3,) float</p>
+<p>Three dimensional point.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.__rshift__"><code class="name flex">
+        
+        <span>def <span class="ident">__rshift__</span></span>(<span>self, other)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Combine two paths to create a single path. The endpoint of the first path needs
+to match the starting point of the second path. This common point is marked as a breakpoint and
+always included in the mesh. To use this function use the right shift operator (p1 &gt;&gt; p2).</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>other</code></strong> :&ensp;<code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>The second path, to extend the current path.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.add_phase"><code class="name flex">
+        
+        <span>def <span class="ident">add_phase</span></span>(<span>self, l)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Add a phase to a closed path. A path is closed when the starting point is equal to the
+end point. A phase of length l means that the path starts 'further down' the closed path.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>l</code></strong> :&ensp;<code>float</code></dt>
+<dd>The phase (expressed as a path length). The resulting path starts l distance along the 
+original path.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.average"><code class="name flex">
+        
+        <span>def <span class="ident">average</span></span>(<span>self, fun)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Average a function along the path, by integrating 1/l * fun(path(l)) with 0 &lt;= l &lt;= path length.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>fun</code></strong> :&ensp;<code>callable (3,) -&gt; float</code></dt>
+<dd>A function taking a three dimensional point and returning a float.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<p>The average value of the function along the point.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.axis_intersection"><code class="name flex">
+        
+        <span>def <span class="ident">axis_intersection</span></span>(<span>self, n_samples=500)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Compute the z-value of the intersection of the trajectory with the x=0 plane.
+Note that this function will not work properly if the trajectory crosses the x=0 plane zero or multiple times.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float, z-value</code> of <code>the intersection with the x=0 plane</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.breakup"><code class="name flex">
+        
+        <span>def <span class="ident">breakup</span></span>(<span>self)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Breakup a path at its breakpoints.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list[<a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a>]</code></dt>
+<dd>A list of N paths (without breakpoints) that span the original path</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.close"><code class="name flex">
+        
+        <span>def <span class="ident">close</span></span>(<span>self)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Close the path, by making a straight line to the starting point.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.cut"><code class="name flex">
+        
+        <span>def <span class="ident">cut</span></span>(<span>self, length)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Cut the path in two at a specific length along the path.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>length</code></strong> :&ensp;<code>float</code></dt>
+<dd>The length along the path at which to cut.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(Path, Path)</p>
+<p>A tuple containing two paths. The first path contains the path upto length, while the second path contains the rest.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.endpoint"><code class="name flex">
+        
+        <span>def <span class="ident">endpoint</span></span>(<span>self)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Returns the endpoint of the path.</p>
+<h2 id="returns">Returns</h2>
+<p>(3,) float</p>
+<p>The endpoint of the path.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.extend_with_arc"><code class="name flex">
+        
+        <span>def <span class="ident">extend_with_arc</span></span>(<span>self, center, end, reverse=False)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Extend the current path using an arc.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>center</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The center point of the arc.</dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The endpoint of the arc, shoud lie on a circle determined
+by the given centerpoint and the current endpoint.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.extend_with_line"><code class="name flex">
+        
+        <span>def <span class="ident">extend_with_line</span></span>(<span>self, point)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Extend the current path by a line from the current endpoint to the given point.
+The given point is marked a breakpoint.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>point</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The new endpoint.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.extend_with_polar_arc"><code class="name flex">
+        
+        <span>def <span class="ident">extend_with_polar_arc</span></span>(<span>self, radius, angle, plane_normal=(0, 1, 0))</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Extend the current path by a smooth arc using polar coordinates.
+The arc is defined by a specified radius and angle and rotates counterclockwise
+ around around the normal that defines the arcing plane.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>The radius of the arc</dd>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The angle subtended by the arc (in radians)</dd>
+<dt><strong><code>plane_normal</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The normal vector of the plane containing the arc</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.extrude"><code class="name flex">
+        
+        <span>def <span class="ident">extrude</span></span>(<span>self, vector)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a surface by extruding the path along a vector. The vector gives both
+the length and the direction of the extrusion.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>vector</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The direction and length (norm of the vector) to extrude by.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.extrude_by_path"><code class="name flex">
+        
+        <span>def <span class="ident">extrude_by_path</span></span>(<span>self, p2)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a surface by extruding the path along a second path. The second
+path does not need to start along the first path. Imagine the surface created
+by moving the first path along the second path.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>p2</code></strong> :&ensp;<code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>The (second) path defining the extrusion.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.is_closed"><code class="name flex">
+        
+        <span>def <span class="ident">is_closed</span></span>(<span>self)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Determine whether the path is closed, by comparing the starting and endpoint.</p>
+<h2 id="returns">Returns</h2>
+<p>bool: True if the path is closed, False otherwise.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.map_points"><code class="name flex">
+        
+        <span>def <span class="ident">map_points</span></span>(<span>self, fun)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Return a new function by mapping a function over points along the path (see <code><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></code>).
+The path length is assumed to stay the same after this operation.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>fun</code></strong> :&ensp;<code>callable (3,) -&gt; (3,)</code></dt>
+<dd>Function taking three dimensional points and returning three dimensional points.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Path</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.mesh"><code class="name flex">
+        
+        <span>def <span class="ident">mesh</span></span>(<span>self,<br>mesh_size=None,<br>mesh_size_factor=None,<br>higher_order=False,<br>name=None,<br>ensure_outward_normals=True)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Mesh the path, so it can be used in the BEM solver. The result of meshing a path
+are (possibly curved) line elements.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>mesh_size</code></strong> :&ensp;<code>float</code></dt>
+<dd>Determines amount of elements in the mesh. A smaller
+mesh size leads to more elements.</dd>
+<dt><strong><code>mesh_size_factor</code></strong> :&ensp;<code>float</code></dt>
+<dd>Alternative way to specify the mesh size, which scales
+with the dimensions of the geometry, and therefore more
+easily translates between different geometries.</dd>
+<dt><strong><code>higher_order</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether to generate a higher order mesh. A higher order
+produces curved line elements (determined by 4 points on
+each curved element). The BEM solver supports higher order
+elements in radial symmetric geometries only.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Assign this name to the mesh, instead of the name value assinged to Surface.name</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p><code><a title="voltrace.mesher.Mesh" href="mesher.html#voltrace.mesher.Mesh">Mesh</a></code></p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.middle_point"><code class="name flex">
+        
+        <span>def <span class="ident">middle_point</span></span>(<span>self)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Returns the midpoint of the path (in terms of length along the path.)</p>
+<h2 id="returns">Returns</h2>
+<p>(3,) float</p>
+<p>The point at the middle of the path.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.plane_intersection"><code class="name flex">
+        
+        <span>def <span class="ident">plane_intersection</span></span>(<span>self, p0, normal, n_samples=500)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Compute the intersection of the <code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code> with a general plane.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>p0</code></strong> :&ensp;<code>ndarray</code> of <code>shape (3,)</code></dt>
+<dd>Point lying in the plane.</dd>
+<dt><strong><code>normal</code></strong> :&ensp;<code>ndarray</code> of <code>shape (3,)</code></dt>
+<dd>Vector normal to the plane.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The parameter value at the intersection point. To retrieve the
+corresponding point, use <code><a title="voltrace.geometry.Path.__call__" href="#voltrace.geometry.Path.__call__">Path.__call__()</a></code></dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.reverse"><code class="name flex">
+        
+        <span>def <span class="ident">reverse</span></span>(<span>self)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Generate a reversed version of the current path.
+The reversed path is created by inverting the traversal direction,
+such that the start becomes the end and vice versa.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.revolve_x"><code class="name flex">
+        
+        <span>def <span class="ident">revolve_x</span></span>(<span>self, angle=6.283185307179586)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a surface by revolving the path anti-clockwise around the x-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The angle by which to revolve. THe default 2*pi gives a full revolution.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.revolve_y"><code class="name flex">
+        
+        <span>def <span class="ident">revolve_y</span></span>(<span>self, angle=6.283185307179586)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a surface by revolving the path anti-clockwise around the y-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The angle by which to revolve. THe default 2*pi gives a full revolution.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.revolve_z"><code class="name flex">
+        
+        <span>def <span class="ident">revolve_z</span></span>(<span>self, angle=6.283185307179586)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a surface by revolving the path anti-clockwise around the z-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The angle by which to revolve. THe default 2*pi gives a full revolution.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.sample"><code class="name flex">
+        
+        <span>def <span class="ident">sample</span></span>(<span>self, n_samples=500)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Return samples along the path.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>n_samples</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of samples to take</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Tuple[ndarray, ndarray]</code></dt>
+<dd>the first element is samples of the parameter (x-values) with shape (n_samples,)
+while the second is the corresponding points (shape (n_samples, 3))</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.starting_point"><code class="name flex">
+        
+        <span>def <span class="ident">starting_point</span></span>(<span>self)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Returns the starting point of the path.</p>
+<h2 id="returns">Returns</h2>
+<p>(3,) float</p>
+<p>The starting point of the path.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.stroke"><code class="name flex">
+        
+        <span>def <span class="ident">stroke</span></span>(<span>self, width)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Give the path that forms the outline of the current path if it were to be 'stroked'
+by a marker with the given width. The returned path is closed. The function currently
+only supports paths consisting of straight sections lying in the xz plane.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>width</code></strong> :&ensp;<code>float</code></dt>
+<dd>The width of the stroke. The outline will be distanced half the width to the original path (except at the endpoints).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code>
+    The outline of the stroke.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.subsection"><code class="name flex">
+        
+        <span>def <span class="ident">subsection</span></span>(<span>self, start, end)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Return the subsection of the path between start and end.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>start</code></strong> :&ensp;<code>float</code></dt>
+<dd>The starting coordinate. The subsection starts at point <code>path(start)</code></dd>
+<dt><strong><code>end</code></strong> :&ensp;<code>float</code></dt>
+<dd>The final coordinate. The subsection ends at point <code>path(end)</code></dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>The <code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code> representing the subsection</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.velocity_vector"><code class="name flex">
+        
+        <span>def <span class="ident">velocity_vector</span></span>(<span>self, t)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Calculate the velocity (tangent) vector at a specific point on the path 
+using cubic spline interpolation.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>t</code></strong> :&ensp;<code>float</code></dt>
+<dd>The point on the path at which to calculate the velocity</dd>
+<dt><strong><code>num_splines</code></strong> :&ensp;<code>int</code></dt>
+<dd>The number of samples used for cubic spline interpolation</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(3,) np.ndarray of float</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.xy_plane_intersection"><code class="name flex">
+        
+        <span>def <span class="ident">xy_plane_intersection</span></span>(<span>self, z=0.0, n_samples=500)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Compute the intersection of a trajectory with an xy-plane.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>z</code></strong> :&ensp;<code>float</code></dt>
+<dd>z-coordinate of the plane with which to compute the intersection</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The parameter value at the intersection point. To retrieve the
+corresponding point, use <code><a title="voltrace.geometry.Path.__call__" href="#voltrace.geometry.Path.__call__">Path.__call__()</a></code></dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.xz_plane_intersection"><code class="name flex">
+        
+        <span>def <span class="ident">xz_plane_intersection</span></span>(<span>self, y=0.0, n_samples=500)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Compute the intersection of a trajectory with an xz-plane.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>y</code></strong> :&ensp;<code>float</code></dt>
+<dd>y-coordinate of the plane with which to compute the intersection</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The parameter value at the intersection point. To retrieve the
+corresponding point, use <code><a title="voltrace.geometry.Path.__call__" href="#voltrace.geometry.Path.__call__">Path.__call__()</a></code></dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Path.yz_plane_intersection"><code class="name flex">
+        
+        <span>def <span class="ident">yz_plane_intersection</span></span>(<span>self, x=0.0, n_samples=500)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Compute the intersection of a trajectory with an yz-plane.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>float</code></dt>
+<dd>x-coordinate of the plane with which to compute the intersection</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The parameter value at the intersection point. To retrieve the
+corresponding point, use <code><a title="voltrace.geometry.Path.__call__" href="#voltrace.geometry.Path.__call__">Path.__call__()</a></code></dd>
+</dl></div>
+</dd>
+  
+          </dl>
+
+          
+              <h3>Inherited members</h3>
+              <ul class="hlist">
+                  <li><code><b><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></b></code>:
+                      <ul class="hlist">
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_xy" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_xy">mirror_xy</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_xz" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_xz">mirror_xz</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_yz" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_yz">mirror_yz</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.move" href="geometric_object.html#voltrace.geometric_object.GeometricObject.move">move</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.rotate" href="geometric_object.html#voltrace.geometric_object.GeometricObject.rotate">rotate</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.rotate_around_axis" href="geometric_object.html#voltrace.geometric_object.GeometricObject.rotate_around_axis">rotate_around_axis</a></code></li>
+                      </ul>
+
+                  </li>
+              </ul>
+
+      </dd>
+      
+      <dt id="voltrace.geometry.PathCollection"><code class="flex name class">
+          <span>class <span class="ident">PathCollection</span></span>
+              <span>(</span><span>paths)</span>
+      </code></dt>
+
+      <dd>
+  
+  
+
+  <div class="desc"><p>A PathCollection is a collection of <code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code>. It can be created using the + operator (for example path1+path2).
+Note that <code><a title="voltrace.geometry.PathCollection" href="#voltrace.geometry.PathCollection">PathCollection</a></code> is a subclass of <code><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></code>, and therefore can be easily moved and rotated.</p></div>
+
+
+          <h3>Ancestors</h3>
+          <ul class="hlist">
+              <li><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></li>
+              <li>abc.ABC</li>
+              <li>collections.abc.MutableSequence</li>
+              <li>collections.abc.Sequence</li>
+              <li>collections.abc.Reversible</li>
+              <li>collections.abc.Collection</li>
+              <li>collections.abc.Sized</li>
+              <li>collections.abc.Iterable</li>
+              <li>collections.abc.Container</li>
+          </ul>
+
+          <h3>Instance variables</h3>
+          <dl>
+              
+              <dt id="voltrace.geometry.PathCollection.name"><code class="name">prop <span class="ident">name</span></code></dt>
+              <dd>
+  
+  
+
+  <div class="desc"></div>
+</dd>
+          </dl>
+          <h3>Methods</h3>
+          <dl>
+              
+    <dt id="voltrace.geometry.PathCollection.__add__"><code class="name flex">
+        
+        <span>def <span class="ident">__add__</span></span>(<span>self, other)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Allows you to combine paths and path collection using the + operator (path1 + path2).</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.PathCollection.__iadd__"><code class="name flex">
+        
+        <span>def <span class="ident">__iadd__</span></span>(<span>self, other)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Allows you to add paths to the collection using the += operator.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.PathCollection.extrude"><code class="name flex">
+        
+        <span>def <span class="ident">extrude</span></span>(<span>self, vector)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.PathCollection.extrude_by_path"><code class="name flex">
+        
+        <span>def <span class="ident">extrude_by_path</span></span>(<span>self, p2)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.PathCollection.insert"><code class="name flex">
+        
+        <span>def <span class="ident">insert</span></span>(<span>self, index, value)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Insert a Path at the given index.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.PathCollection.mesh"><code class="name flex">
+        
+        <span>def <span class="ident">mesh</span></span>(<span>self,<br>mesh_size=None,<br>mesh_size_factor=None,<br>higher_order=False,<br>name=None,<br>ensure_outward_normals=True)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>See <code><a title="voltrace.geometry.Path.mesh" href="#voltrace.geometry.Path.mesh">Path.mesh()</a></code></p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.PathCollection.revolve_x"><code class="name flex">
+        
+        <span>def <span class="ident">revolve_x</span></span>(<span>self, angle=6.283185307179586)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.PathCollection.revolve_y"><code class="name flex">
+        
+        <span>def <span class="ident">revolve_y</span></span>(<span>self, angle=6.283185307179586)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.PathCollection.revolve_z"><code class="name flex">
+        
+        <span>def <span class="ident">revolve_z</span></span>(<span>self, angle=6.283185307179586)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"></div>
+</dd>
+  
+          </dl>
+
+          
+              <h3>Inherited members</h3>
+              <ul class="hlist">
+                  <li><code><b><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></b></code>:
+                      <ul class="hlist">
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.map_points" href="geometric_object.html#voltrace.geometric_object.GeometricObject.map_points">map_points</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_xy" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_xy">mirror_xy</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_xz" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_xz">mirror_xz</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_yz" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_yz">mirror_yz</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.move" href="geometric_object.html#voltrace.geometric_object.GeometricObject.move">move</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.rotate" href="geometric_object.html#voltrace.geometric_object.GeometricObject.rotate">rotate</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.rotate_around_axis" href="geometric_object.html#voltrace.geometric_object.GeometricObject.rotate_around_axis">rotate_around_axis</a></code></li>
+                      </ul>
+
+                  </li>
+              </ul>
+
+      </dd>
+      
+      <dt id="voltrace.geometry.Surface"><code class="flex name class">
+          <span>class <span class="ident">Surface</span></span>
+              <span>(</span><span>fun, parameter_max1, parameter_max2, breakpoints1=None, breakpoints2=None, name=None)</span>
+      </code></dt>
+
+      <dd>
+  
+  
+
+  <div class="desc"><p>A Surface is a mapping from two numbers to a three dimensional point.
+Note that <code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code> is a subclass of <code><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></code>, and therefore can be easily moved and rotated.</p></div>
+
+
+          <h3>Ancestors</h3>
+          <ul class="hlist">
+              <li><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></li>
+              <li>abc.ABC</li>
+          </ul>
+
+          <h3>Static methods</h3>
+          <dl>
+              
+    <dt id="voltrace.geometry.Surface.annulus_xy"><code class="name flex">
+        
+        <span>def <span class="ident">annulus_xy</span></span>(<span>x0, y0, inner_radius, outer_radius)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a annulus in the XY plane.         </p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x0</code></strong> :&ensp;<code>float</code></dt>
+<dd>x-coordiante of the center of the annulus</dd>
+<dt><strong><code>y0</code></strong> :&ensp;<code>float</code></dt>
+<dd>y-coordinate of the center of the annulus</dd>
+<dt><strong><code>inner_radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>inner radius of the annulus</dd>
+</dl>
+<p>outer_radius:
+    outer radius of the annulus
+Returns</p>
+<hr>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.annulus_xz"><code class="name flex">
+        
+        <span>def <span class="ident">annulus_xz</span></span>(<span>x0, z0, inner_radius, outer_radius)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a annulus in the XZ plane.         </p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x0</code></strong> :&ensp;<code>float</code></dt>
+<dd>x-coordiante of the center of the annulus</dd>
+<dt><strong><code>z0</code></strong> :&ensp;<code>float</code></dt>
+<dd>z-coordinate of the center of the annulus</dd>
+<dt><strong><code>inner_radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>inner radius of the annulus</dd>
+</dl>
+<p>outer_radius:
+    outer radius of the annulus
+Returns</p>
+<hr>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.annulus_yz"><code class="name flex">
+        
+        <span>def <span class="ident">annulus_yz</span></span>(<span>y0, z0, inner_radius, outer_radius)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a annulus in the YZ plane.         </p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>y0</code></strong> :&ensp;<code>float</code></dt>
+<dd>y-coordiante of the center of the annulus</dd>
+<dt><strong><code>z0</code></strong> :&ensp;<code>float</code></dt>
+<dd>z-coordinate of the center of the annulus</dd>
+<dt><strong><code>inner_radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>inner radius of the annulus</dd>
+</dl>
+<p>outer_radius:
+    outer radius of the annulus
+Returns</p>
+<hr>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.aperture"><code class="name flex">
+        
+        <span>def <span class="ident">aperture</span></span>(<span>height, radius, extent, z=0.0)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.box"><code class="name flex">
+        
+        <span>def <span class="ident">box</span></span>(<span>p0, p1)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a box with the two given points at opposite corners.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>p0</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>One corner of the box</dd>
+<dt><strong><code>p1</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The opposite corner of the box</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.SurfaceCollection" href="#voltrace.geometry.SurfaceCollection">SurfaceCollection</a> representing the box</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.disk_xy"><code class="name flex">
+        
+        <span>def <span class="ident">disk_xy</span></span>(<span>x0, y0, radius)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a disk in the XY plane.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x0</code></strong> :&ensp;<code>float</code></dt>
+<dd>x-coordiante of the center of the disk</dd>
+<dt><strong><code>y0</code></strong> :&ensp;<code>float</code></dt>
+<dd>y-coordinate of the center of the disk</dd>
+<dt><strong><code>radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>radius of the disk</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.disk_xz"><code class="name flex">
+        
+        <span>def <span class="ident">disk_xz</span></span>(<span>x0, z0, radius)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a disk in the XZ plane.         </p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x0</code></strong> :&ensp;<code>float</code></dt>
+<dd>x-coordiante of the center of the disk</dd>
+<dt><strong><code>z0</code></strong> :&ensp;<code>float</code></dt>
+<dd>z-coordinate of the center of the disk</dd>
+<dt><strong><code>radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>radius of the disk</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.disk_yz"><code class="name flex">
+        
+        <span>def <span class="ident">disk_yz</span></span>(<span>y0, z0, radius)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a disk in the YZ plane.         </p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>y0</code></strong> :&ensp;<code>float</code></dt>
+<dd>y-coordiante of the center of the disk</dd>
+<dt><strong><code>z0</code></strong> :&ensp;<code>float</code></dt>
+<dd>z-coordinate of the center of the disk</dd>
+<dt><strong><code>radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>radius of the disk</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.from_boundary_paths"><code class="name flex">
+        
+        <span>def <span class="ident">from_boundary_paths</span></span>(<span>p1, p2, p3, p4)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a surface with the four given paths as the boundary.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>p1</code></strong> :&ensp;<code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>First edge of the surface</dd>
+<dt><strong><code>p2</code></strong> :&ensp;<code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>Second edge of the surface</dd>
+<dt><strong><code>p3</code></strong> :&ensp;<code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>Third edge of the surface</dd>
+<dt><strong><code>p4</code></strong> :&ensp;<code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>Fourth edge of the surface</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a> with the four giving paths as the boundary</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.rectangle_xy"><code class="name flex">
+        
+        <span>def <span class="ident">rectangle_xy</span></span>(<span>xmin, xmax, ymin, ymax)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a rectangle in the XY plane. The path starts at (xmin, ymin, 0), and is 
+counter clockwise around the z-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>xmin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum x-coordinate of the corner points.</dd>
+<dt><strong><code>xmax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum x-coordinate of the corner points.</dd>
+<dt><strong><code>ymin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum y-coordinate of the corner points.</dd>
+<dt><strong><code>ymax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum y-coordinate of the corner points.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a> representing the rectangle</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.rectangle_xz"><code class="name flex">
+        
+        <span>def <span class="ident">rectangle_xz</span></span>(<span>xmin, xmax, zmin, zmax)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a rectangle in the XZ plane. The path starts at (xmin, 0, zmin), and is 
+counter clockwise around the y-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>xmin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum x-coordinate of the corner points.</dd>
+<dt><strong><code>xmax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum x-coordinate of the corner points.</dd>
+<dt><strong><code>zmin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum z-coordinate of the corner points.</dd>
+<dt><strong><code>zmax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum z-coordinate of the corner points.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a> representing the rectangle</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.rectangle_yz"><code class="name flex">
+        
+        <span>def <span class="ident">rectangle_yz</span></span>(<span>ymin, ymax, zmin, zmax)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a rectangle in the YZ plane. The path starts at (0, ymin, zmin), and is 
+counter clockwise around the x-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>ymin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum y-coordinate of the corner points.</dd>
+<dt><strong><code>ymax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum y-coordinate of the corner points.</dd>
+<dt><strong><code>zmin</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum z-coordinate of the corner points.</dd>
+<dt><strong><code>zmax</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum z-coordinate of the corner points.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a> representing the rectangle</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.spanned_by_paths"><code class="name flex">
+        
+        <span>def <span class="ident">spanned_by_paths</span></span>(<span>path1, path2)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a surface by considering the area between two paths. Imagine two points
+progressing along the path simultaneously and at each step drawing a straight line
+between the points.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>path1</code></strong> :&ensp;<code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>The path characterizing one edge of the surface</dd>
+<dt><strong><code>path2</code></strong> :&ensp;<code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>The path characterizing the opposite edge of the surface</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.sphere"><code class="name flex">
+        
+        <span>def <span class="ident">sphere</span></span>(<span>radius)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Create a sphere with the given radius, the center of the sphere is
+at the origin, but can easily be moved by using the <code>mesher.GeometricObject.move</code> method.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>radius</code></strong> :&ensp;<code>float</code></dt>
+<dd>The radius of the sphere</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a> representing the sphere</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+          </dl>
+          <h3>Methods</h3>
+          <dl>
+              
+    <dt id="voltrace.geometry.Surface.__add__"><code class="name flex">
+        
+        <span>def <span class="ident">__add__</span></span>(<span>self, other)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Allows you to combine surfaces into a <code><a title="voltrace.geometry.SurfaceCollection" href="#voltrace.geometry.SurfaceCollection">SurfaceCollection</a></code> using the + operator (surface1 + surface2).</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.__call__"><code class="name flex">
+        
+        <span>def <span class="ident">__call__</span></span>(<span>self, u, v)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Evaluate the surface at point (u, v). Returns a three dimensional point.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>u</code></strong> :&ensp;<code>float</code></dt>
+<dd>First coordinate, should be 0 &lt;= u &lt;= self.parameter_max1</dd>
+<dt><strong><code>v</code></strong> :&ensp;<code>float</code></dt>
+<dd>Second coordinate, should be 0 &lt;= v &lt;= self.parameter_max2</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(3,) np.ndarray of double</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.extrude_boundary"><code class="name flex">
+        
+        <span>def <span class="ident">extrude_boundary</span></span>(<span>self, vector, enclose=True)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Extrude the boundary paths of the surface along a vector. The vector gives both
+the length and the direction of the extrusion.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>vector</code></strong> :&ensp;<code>(3,) float</code></dt>
+<dd>The direction and length (norm of the vector) to extrude by.</dd>
+<dt><strong><code>enclose</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether enclose the extrusion by adding a copy of the original surface 
+moved by the extrusion vector to the resulting SurfaceCollection.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.SurfaceCollection" href="#voltrace.geometry.SurfaceCollection">SurfaceCollection</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.extrude_boundary_by_path"><code class="name flex">
+        
+        <span>def <span class="ident">extrude_boundary_by_path</span></span>(<span>self, path, enclose=True)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Extrude the boundary paths of a surface along a path. The path 
+does not need to start at the surface. Imagine the  extrusion surface 
+created by moving the boundary paths along the path.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>path</code></strong> :&ensp;<code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></dt>
+<dd>The path defining the extrusion.</dd>
+<dt><strong><code>enclose</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether to enclose the extrusion by adding a copy of the original surface 
+moved by the extrusion vector to the resulting SurfaceCollection.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.SurfaceCollection" href="#voltrace.geometry.SurfaceCollection">SurfaceCollection</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.get_boundary_paths"><code class="name flex">
+        
+        <span>def <span class="ident">get_boundary_paths</span></span>(<span>self)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Get the boundary paths of the surface.
+Computes the boundary paths (edges) of the surface and combines them into a <code><a title="voltrace.geometry.PathCollection" href="#voltrace.geometry.PathCollection">PathCollection</a></code>.
+Non-closed paths get filtered out when closed paths are present, as only closed paths 
+represent true boundaries in this case.
+Note that this function might behave unexpectedly for surfaces without any boundaries (e.g a sphere).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.PathCollection" href="#voltrace.geometry.PathCollection">PathCollection</a> representing the boundary paths</code> of <code>the surface</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.mesh"><code class="name flex">
+        
+        <span>def <span class="ident">mesh</span></span>(<span>self, mesh_size=None, mesh_size_factor=None, name=None, ensure_outward_normals=True)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Mesh the surface, so it can be used in the BEM solver. The result of meshing
+a surface are triangles.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>mesh_size</code></strong> :&ensp;<code>float</code></dt>
+<dd>Determines amount of elements in the mesh. A smaller
+mesh size leads to more elements.</dd>
+<dt><strong><code>mesh_size_factor</code></strong> :&ensp;<code>float</code></dt>
+<dd>Alternative way to specify the mesh size, which scales
+with the dimensions of the geometry, and therefore more
+easily translates between different geometries.</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Assign this name to the mesh, instead of the name value assinged to Surface.name</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p><code><a title="voltrace.mesher.Mesh" href="mesher.html#voltrace.mesher.Mesh">Mesh</a></code></p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.revolve_boundary_x"><code class="name flex">
+        
+        <span>def <span class="ident">revolve_boundary_x</span></span>(<span>self, angle=6.283185307179586, enclose=True)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Revolve the boundary paths of the surface anti-clockwise around the x-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The angle by which to revolve. THe default 2*pi gives a full revolution.</dd>
+<dt><strong><code>enclose</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether enclose the revolution by adding a copy of the original surface 
+rotated over the angle to the resulting SurfaceCollection.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.SurfaceCollection" href="#voltrace.geometry.SurfaceCollection">SurfaceCollection</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.revolve_boundary_y"><code class="name flex">
+        
+        <span>def <span class="ident">revolve_boundary_y</span></span>(<span>self, angle=6.283185307179586, enclose=True)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Revolve the boundary paths of the surface anti-clockwise around the y-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The angle by which to revolve. THe default 2*pi gives a full revolution.</dd>
+<dt><strong><code>cap_extension</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether to enclose the revolution by adding a copy of the original surface 
+rotated over the angle to the resulting SurfaceCollection.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.SurfaceCollection" href="#voltrace.geometry.SurfaceCollection">SurfaceCollection</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.Surface.revolve_boundary_z"><code class="name flex">
+        
+        <span>def <span class="ident">revolve_boundary_z</span></span>(<span>self, angle=6.283185307179586, enclose=True)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Revolve the boundary paths of the surface anti-clockwise around the z-axis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>The angle by which to revolve. THe default 2*pi gives a full revolution.</dd>
+<dt><strong><code>cap_extension</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether to enclose the revolution by adding a copy of the original surface 
+rotated over the angle to the resulting SurfaceCollection.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="voltrace.geometry.SurfaceCollection" href="#voltrace.geometry.SurfaceCollection">SurfaceCollection</a></code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+</dd>
+  
+          </dl>
+
+          
+              <h3>Inherited members</h3>
+              <ul class="hlist">
+                  <li><code><b><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></b></code>:
+                      <ul class="hlist">
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.map_points" href="geometric_object.html#voltrace.geometric_object.GeometricObject.map_points">map_points</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_xy" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_xy">mirror_xy</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_xz" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_xz">mirror_xz</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_yz" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_yz">mirror_yz</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.move" href="geometric_object.html#voltrace.geometric_object.GeometricObject.move">move</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.rotate" href="geometric_object.html#voltrace.geometric_object.GeometricObject.rotate">rotate</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.rotate_around_axis" href="geometric_object.html#voltrace.geometric_object.GeometricObject.rotate_around_axis">rotate_around_axis</a></code></li>
+                      </ul>
+
+                  </li>
+              </ul>
+
+      </dd>
+      
+      <dt id="voltrace.geometry.SurfaceCollection"><code class="flex name class">
+          <span>class <span class="ident">SurfaceCollection</span></span>
+              <span>(</span><span>surfaces)</span>
+      </code></dt>
+
+      <dd>
+  
+  
+
+  <div class="desc"><p>A SurfaceCollection is a collection of <code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code>. It can be created using the + operator (for example surface1+surface2).
+Note that <code><a title="voltrace.geometry.SurfaceCollection" href="#voltrace.geometry.SurfaceCollection">SurfaceCollection</a></code> is a subclass of <code><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></code>, and therefore can be easily moved and rotated.</p></div>
+
+
+          <h3>Ancestors</h3>
+          <ul class="hlist">
+              <li><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></li>
+              <li>abc.ABC</li>
+              <li>collections.abc.MutableSequence</li>
+              <li>collections.abc.Sequence</li>
+              <li>collections.abc.Reversible</li>
+              <li>collections.abc.Collection</li>
+              <li>collections.abc.Sized</li>
+              <li>collections.abc.Iterable</li>
+              <li>collections.abc.Container</li>
+          </ul>
+
+          <h3>Instance variables</h3>
+          <dl>
+              
+              <dt id="voltrace.geometry.SurfaceCollection.name"><code class="name">prop <span class="ident">name</span></code></dt>
+              <dd>
+  
+  
+
+  <div class="desc"></div>
+</dd>
+          </dl>
+          <h3>Methods</h3>
+          <dl>
+              
+    <dt id="voltrace.geometry.SurfaceCollection.__add__"><code class="name flex">
+        
+        <span>def <span class="ident">__add__</span></span>(<span>self, other)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Allows you to combine surfaces into a <code><a title="voltrace.geometry.SurfaceCollection" href="#voltrace.geometry.SurfaceCollection">SurfaceCollection</a></code> using the + operator (surface1 + surface2).</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.SurfaceCollection.__iadd__"><code class="name flex">
+        
+        <span>def <span class="ident">__iadd__</span></span>(<span>self, other)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Allows you to add surfaces to the collection using the += operator.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.SurfaceCollection.insert"><code class="name flex">
+        
+        <span>def <span class="ident">insert</span></span>(<span>self, index, value)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>Insert a Surface at the given index.</p></div>
+</dd>
+  
+              
+    <dt id="voltrace.geometry.SurfaceCollection.mesh"><code class="name flex">
+        
+        <span>def <span class="ident">mesh</span></span>(<span>self, mesh_size=None, mesh_size_factor=None, name=None, ensure_outward_normals=True)</span>
+    </code></dt>
+    <dd>
+  
+  
+
+  <div class="desc"><p>See <code><a title="voltrace.geometry.Surface.mesh" href="#voltrace.geometry.Surface.mesh">Surface.mesh()</a></code></p></div>
+</dd>
+  
+          </dl>
+
+          
+              <h3>Inherited members</h3>
+              <ul class="hlist">
+                  <li><code><b><a title="voltrace.geometric_object.GeometricObject" href="geometric_object.html#voltrace.geometric_object.GeometricObject">GeometricObject</a></b></code>:
+                      <ul class="hlist">
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.map_points" href="geometric_object.html#voltrace.geometric_object.GeometricObject.map_points">map_points</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_xy" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_xy">mirror_xy</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_xz" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_xz">mirror_xz</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.mirror_yz" href="geometric_object.html#voltrace.geometric_object.GeometricObject.mirror_yz">mirror_yz</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.move" href="geometric_object.html#voltrace.geometric_object.GeometricObject.move">move</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.rotate" href="geometric_object.html#voltrace.geometric_object.GeometricObject.rotate">rotate</a></code></li>
+                              <li><code><a title="voltrace.geometric_object.GeometricObject.rotate_around_axis" href="geometric_object.html#voltrace.geometric_object.GeometricObject.rotate_around_axis">rotate_around_axis</a></code></li>
+                      </ul>
+
+                  </li>
+              </ul>
+
+      </dd>
+    </dl>
+  </section>
+
+    </article>
+    
+  
+  <nav id="sidebar">
+
+    
+
+	<h1 class='title'><a href='index.html' style='color:black'>Voltrace</a></h1>
+	
+    <ul id="index">
+	
+	<li><h3><a href="#header-submodules">Examples</a></h3>
+      <ul>
+			<li><code><a href="einzel-lens.html">Einzel lens</a></code></li>
+      </ul>
+    </li>
+		
+    <li><h3><a href="#header-submodules">Voltrace</a></h3>
+      <ul>
+        <li><code ><a title="voltrace.coordinate_system" href="coordinate_system.html">voltrace.coordinate_system</a></code></li>
+        <li><code ><a title="voltrace.excitation" href="excitation.html">voltrace.excitation</a></code></li>
+        <li><code ><a title="voltrace.field" href="field.html">voltrace.field</a></code></li>
+        <li><code ><a title="voltrace.focus" href="focus.html">voltrace.focus</a></code></li>
+        <li><code ><a title="voltrace.geometric_object" href="geometric_object.html">voltrace.geometric_object</a></code></li>
+        <li><code class='selected'><a title="voltrace.geometry" href="#voltrace.geometry">voltrace.geometry</a></code></li>
+        <li><code ><a title="voltrace.license" href="license.html">voltrace.license</a></code></li>
+        <li><code ><a title="voltrace.mesher" href="mesher.html">voltrace.mesher</a></code></li>
+        <li><code ><a title="voltrace.plotting" href="plotting.html">voltrace.plotting</a></code></li>
+        <li><code ><a title="voltrace.solver" href="solver.html">voltrace.solver</a></code></li>
+        <li><code ><a title="voltrace.tracing" href="tracing.html">voltrace.tracing</a></code></li>
+        <li><code ><a title="voltrace.typing" href="typing.html">voltrace.typing</a></code></li>
+      </ul>
+    </li>
+		
+
+
+    <li><h3><a href="#header-classes">Classes</a></h3>
+      <ul>
+        <li>
+        <h4><code><a title="voltrace.geometry.Path" href="#voltrace.geometry.Path">Path</a></code></h4>
+        
+          
+  
+  <ul class="">
+    <li><code><a title="voltrace.geometry.Path.__add__" href="#voltrace.geometry.Path.__add__">__add__</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.__call__" href="#voltrace.geometry.Path.__call__">__call__</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.__rshift__" href="#voltrace.geometry.Path.__rshift__">__rshift__</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.add_phase" href="#voltrace.geometry.Path.add_phase">add_phase</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.aperture" href="#voltrace.geometry.Path.aperture">aperture</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.arc" href="#voltrace.geometry.Path.arc">arc</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.average" href="#voltrace.geometry.Path.average">average</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.axis_intersection" href="#voltrace.geometry.Path.axis_intersection">axis_intersection</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.breakup" href="#voltrace.geometry.Path.breakup">breakup</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.circle_xy" href="#voltrace.geometry.Path.circle_xy">circle_xy</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.circle_xz" href="#voltrace.geometry.Path.circle_xz">circle_xz</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.circle_yz" href="#voltrace.geometry.Path.circle_yz">circle_yz</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.close" href="#voltrace.geometry.Path.close">close</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.cut" href="#voltrace.geometry.Path.cut">cut</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.ellipse" href="#voltrace.geometry.Path.ellipse">ellipse</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.endpoint" href="#voltrace.geometry.Path.endpoint">endpoint</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.extend_with_arc" href="#voltrace.geometry.Path.extend_with_arc">extend_with_arc</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.extend_with_line" href="#voltrace.geometry.Path.extend_with_line">extend_with_line</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.extend_with_polar_arc" href="#voltrace.geometry.Path.extend_with_polar_arc">extend_with_polar_arc</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.extrude" href="#voltrace.geometry.Path.extrude">extrude</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.extrude_by_path" href="#voltrace.geometry.Path.extrude_by_path">extrude_by_path</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.interpolate" href="#voltrace.geometry.Path.interpolate">interpolate</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.is_closed" href="#voltrace.geometry.Path.is_closed">is_closed</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.line" href="#voltrace.geometry.Path.line">line</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.map_points" href="#voltrace.geometry.Path.map_points">map_points</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.mesh" href="#voltrace.geometry.Path.mesh">mesh</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.middle_point" href="#voltrace.geometry.Path.middle_point">middle_point</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.plane_intersection" href="#voltrace.geometry.Path.plane_intersection">plane_intersection</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.polar_arc" href="#voltrace.geometry.Path.polar_arc">polar_arc</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.polygon" href="#voltrace.geometry.Path.polygon">polygon</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.rectangle_xy" href="#voltrace.geometry.Path.rectangle_xy">rectangle_xy</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.rectangle_xz" href="#voltrace.geometry.Path.rectangle_xz">rectangle_xz</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.rectangle_yz" href="#voltrace.geometry.Path.rectangle_yz">rectangle_yz</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.reverse" href="#voltrace.geometry.Path.reverse">reverse</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.revolve_x" href="#voltrace.geometry.Path.revolve_x">revolve_x</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.revolve_y" href="#voltrace.geometry.Path.revolve_y">revolve_y</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.revolve_z" href="#voltrace.geometry.Path.revolve_z">revolve_z</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.sample" href="#voltrace.geometry.Path.sample">sample</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.spline_through_points" href="#voltrace.geometry.Path.spline_through_points">spline_through_points</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.starting_point" href="#voltrace.geometry.Path.starting_point">starting_point</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.stroke" href="#voltrace.geometry.Path.stroke">stroke</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.subsection" href="#voltrace.geometry.Path.subsection">subsection</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.velocity_vector" href="#voltrace.geometry.Path.velocity_vector">velocity_vector</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.xy_plane_intersection" href="#voltrace.geometry.Path.xy_plane_intersection">xy_plane_intersection</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.xz_plane_intersection" href="#voltrace.geometry.Path.xz_plane_intersection">xz_plane_intersection</a></code></li>
+    <li><code><a title="voltrace.geometry.Path.yz_plane_intersection" href="#voltrace.geometry.Path.yz_plane_intersection">yz_plane_intersection</a></code></li>
+  </ul>
+
+        </li>
+        <li>
+        <h4><code><a title="voltrace.geometry.PathCollection" href="#voltrace.geometry.PathCollection">PathCollection</a></code></h4>
+        
+          
+  
+  <ul class="two-column">
+    <li><code><a title="voltrace.geometry.PathCollection.__add__" href="#voltrace.geometry.PathCollection.__add__">__add__</a></code></li>
+    <li><code><a title="voltrace.geometry.PathCollection.__iadd__" href="#voltrace.geometry.PathCollection.__iadd__">__iadd__</a></code></li>
+    <li><code><a title="voltrace.geometry.PathCollection.extrude" href="#voltrace.geometry.PathCollection.extrude">extrude</a></code></li>
+    <li><code><a title="voltrace.geometry.PathCollection.extrude_by_path" href="#voltrace.geometry.PathCollection.extrude_by_path">extrude_by_path</a></code></li>
+    <li><code><a title="voltrace.geometry.PathCollection.insert" href="#voltrace.geometry.PathCollection.insert">insert</a></code></li>
+    <li><code><a title="voltrace.geometry.PathCollection.mesh" href="#voltrace.geometry.PathCollection.mesh">mesh</a></code></li>
+    <li><code><a title="voltrace.geometry.PathCollection.name" href="#voltrace.geometry.PathCollection.name">name</a></code></li>
+    <li><code><a title="voltrace.geometry.PathCollection.revolve_x" href="#voltrace.geometry.PathCollection.revolve_x">revolve_x</a></code></li>
+    <li><code><a title="voltrace.geometry.PathCollection.revolve_y" href="#voltrace.geometry.PathCollection.revolve_y">revolve_y</a></code></li>
+    <li><code><a title="voltrace.geometry.PathCollection.revolve_z" href="#voltrace.geometry.PathCollection.revolve_z">revolve_z</a></code></li>
+  </ul>
+
+        </li>
+        <li>
+        <h4><code><a title="voltrace.geometry.Surface" href="#voltrace.geometry.Surface">Surface</a></code></h4>
+        
+          
+  
+  <ul class="">
+    <li><code><a title="voltrace.geometry.Surface.__add__" href="#voltrace.geometry.Surface.__add__">__add__</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.__call__" href="#voltrace.geometry.Surface.__call__">__call__</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.annulus_xy" href="#voltrace.geometry.Surface.annulus_xy">annulus_xy</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.annulus_xz" href="#voltrace.geometry.Surface.annulus_xz">annulus_xz</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.annulus_yz" href="#voltrace.geometry.Surface.annulus_yz">annulus_yz</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.aperture" href="#voltrace.geometry.Surface.aperture">aperture</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.box" href="#voltrace.geometry.Surface.box">box</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.disk_xy" href="#voltrace.geometry.Surface.disk_xy">disk_xy</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.disk_xz" href="#voltrace.geometry.Surface.disk_xz">disk_xz</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.disk_yz" href="#voltrace.geometry.Surface.disk_yz">disk_yz</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.extrude_boundary" href="#voltrace.geometry.Surface.extrude_boundary">extrude_boundary</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.extrude_boundary_by_path" href="#voltrace.geometry.Surface.extrude_boundary_by_path">extrude_boundary_by_path</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.from_boundary_paths" href="#voltrace.geometry.Surface.from_boundary_paths">from_boundary_paths</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.get_boundary_paths" href="#voltrace.geometry.Surface.get_boundary_paths">get_boundary_paths</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.mesh" href="#voltrace.geometry.Surface.mesh">mesh</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.rectangle_xy" href="#voltrace.geometry.Surface.rectangle_xy">rectangle_xy</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.rectangle_xz" href="#voltrace.geometry.Surface.rectangle_xz">rectangle_xz</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.rectangle_yz" href="#voltrace.geometry.Surface.rectangle_yz">rectangle_yz</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.revolve_boundary_x" href="#voltrace.geometry.Surface.revolve_boundary_x">revolve_boundary_x</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.revolve_boundary_y" href="#voltrace.geometry.Surface.revolve_boundary_y">revolve_boundary_y</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.revolve_boundary_z" href="#voltrace.geometry.Surface.revolve_boundary_z">revolve_boundary_z</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.spanned_by_paths" href="#voltrace.geometry.Surface.spanned_by_paths">spanned_by_paths</a></code></li>
+    <li><code><a title="voltrace.geometry.Surface.sphere" href="#voltrace.geometry.Surface.sphere">sphere</a></code></li>
+  </ul>
+
+        </li>
+        <li>
+        <h4><code><a title="voltrace.geometry.SurfaceCollection" href="#voltrace.geometry.SurfaceCollection">SurfaceCollection</a></code></h4>
+        
+          
+  
+  <ul class="">
+    <li><code><a title="voltrace.geometry.SurfaceCollection.__add__" href="#voltrace.geometry.SurfaceCollection.__add__">__add__</a></code></li>
+    <li><code><a title="voltrace.geometry.SurfaceCollection.__iadd__" href="#voltrace.geometry.SurfaceCollection.__iadd__">__iadd__</a></code></li>
+    <li><code><a title="voltrace.geometry.SurfaceCollection.insert" href="#voltrace.geometry.SurfaceCollection.insert">insert</a></code></li>
+    <li><code><a title="voltrace.geometry.SurfaceCollection.mesh" href="#voltrace.geometry.SurfaceCollection.mesh">mesh</a></code></li>
+    <li><code><a title="voltrace.geometry.SurfaceCollection.name" href="#voltrace.geometry.SurfaceCollection.name">name</a></code></li>
+  </ul>
+
+        </li>
+      </ul>
+    </li>
+
+    </ul>
+  </nav>
+
+</main>
+
+<footer id="footer">
+    
+    <p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+
+</body>
+</html>
